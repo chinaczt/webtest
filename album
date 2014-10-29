@@ -1,0 +1,37 @@
+<script>
+	$(function(){
+		var tl_num=$('.album .page').length-1;
+		var indexE;
+		var clickN=tl_num;
+		$('.click_layer>div').on('click',function(){
+			clickN++;
+			if($(this).hasClass('right')){
+				if($('.album>.left').last().index()==tl_num){
+					alert('那边已经没有了');
+				}else{
+					if($('.album>.left').length<=0){
+						indexE=0;
+					}else{
+						indexE=$('.album>.left').last().index()+1;
+					};					
+					$(".album .page:eq("+indexE+")").css("z-index",clickN*10);
+					$(".album .page:eq("+indexE+")").addClass('left turn_left');	
+					$(".album .page:eq("+indexE+")").removeClass('right turn_right');	
+				}
+			}else{
+				if($('.album>.right').first().index()==0){
+					alert('那边已经没有了');
+				}else{
+					if($('.album>.right').length<=0){
+						indexE=tl_num;
+					}else{
+						indexE=$('.album>.right').first().index()-1;
+					};	
+					$(".album .page:eq("+indexE+")").css("z-index",clickN*10);
+					$(".album .page:eq("+indexE+")").addClass('right turn_right');
+					$(".album .page:eq("+indexE+")").removeClass('left turn_left');				
+				}			
+			}
+		});
+	});
+	</script>
